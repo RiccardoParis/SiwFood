@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Scelta Vincitore premio</title>
+	<link rel="stylesheet" href="/css/updateAward.css" />
+</head>
+
+<body>
+	<div class="logwin"><a href="/"><img src="/images/logo-games.jpeg" width="25%" /></a></div>
+	<h1 class="win" th:text="'Scegli il vincitore per il premio: ' + ${award.type}
+		+ ' ' + ${award.year}"></h1>
+	<div th:if="${nominations.isEmpty()}">Non ci sono giochi candidati per il premio</div>
+	<ul>
+		<li th:each="nomination : ${nominations}">
+			<a th:href="@{'/setWinnerToAward/'+ ${nomination.id}+'/'+${award.id}}"
+				th:text="${nomination.title}"></a>
+		</li>
+	</ul>
+</body>
+<footer>
+	<p>© 2024 CompanySiw, Inc</p>
+	<a class="logoFooter" href="/"><img src="/images/logo-games.jpeg" width="10%" /></a>
+</footer>
+</html>

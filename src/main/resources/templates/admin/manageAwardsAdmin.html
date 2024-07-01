@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Premi da gestire Admin</title>
+	<link rel="stylesheet" href="/css/gestionePremi.css" />	
+</head>
+
+<body>
+	<div class="main-content">
+		<a class="ancoraLogo" href="/"><img class="logo" src="/images/logo-games.jpeg" width="50%" /></a>
+		<h1>Premi in gestione:</h1>
+	</div>
+	<div th:if="${awards.isEmpty()}">Non ci sono premi nel sistema</div>
+	<ul>
+		<li th:each="award : ${awards}">
+			<span th:text="'Miglior gioco ' + ${award.type} + ' (' + ${award.year} + ')'"></span>
+			<a th:href="@{'/admin/formUpdateAwardAdmin' + '/' + ${award.id} 
+				+ '/' + ${award.type}}">Aggiorna premio</a>
+		</li>
+	</ul>
+</body>
+<footer>
+	<p>© 2024 CompanySiw, Inc</p>
+	<a class="logoFooter" href="/"><img src="/images/logo-games.jpeg" width="10%" /></a>
+</footer>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sviluppatori nel sistema</title>
+	<link rel="stylesheet" href="/css/elencoSviluppatori.css" />	
+</head>
+<body>
+	<header class="log">
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${userDetails}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+	
+	<div class="main-content">
+		<a class="ancoraLogo" href="/"><img class="logo" src="/images/logo-games.jpeg"/></a>
+		<h1>Sviluppatori:</h1>
+	</div>
+	<div th:if="${developers.isEmpty()}">Non ci sono sviluppatori nel sistema</div>
+	<ul>
+		<li th:each="developer : ${developers}">
+			<a th:href="'/admin/' + @{'developer' + '/' + ${developer.id}}"
+				th:text="${developer.nameCompany}"> 
+			</a>
+			<div>
+			<a th:href="'/admin/deleteDeveloper/' + @{${developer.id}}"><button type="button">Elimina</button></a>
+			</div>	
+		</li>
+	</ul>
+	<a href="/admin/formNewDeveloper"><button type="button">Aggiungi sviluppatore</button>
+	</a>
+</body>
+</html>

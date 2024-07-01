@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gioco</title>
+	<link rel="stylesheet" href="/css/single.css" />
+</head>
+<body>
+	<div>
+		<a href="/default/games"><img class="logo" src="/images/logo-games.jpeg"/></a>
+	</div>
+	<div th:if="${game}">
+		<h1 th:text="${game.title} + ' (' + ${game.year} + ')'"></h1>
+		<div class="data">
+			<div id="written">
+				<div>GENERE: <span th:text = "${game.genre}"></span></div>
+				<div>BUDGET: <span th:text = "${game.budget}"></span></div>
+				<div>PIATTAFORME: <span th:text="${game.platforms}"></span></div>
+				<div>SVILUPPATORE: <span th:if="${game.developer}">
+									<span th:text ="${game.developer.nameCompany}"></span>
+							  		</span>
+							  		<span th:unless="${game.developer}">Non c'è sviluppatore</span>						
+				</div>
+			</div>
+			<img th:src="'/videogame-photo/' + ${game.urlImage}"/>
+		</div>
+	</div>
+	<div th:unless="${game}">Non esiste</div>
+</body>
+<footer>
+	<p>© 2024 CompanySiw, Inc</p>
+	<a class="logoFooter" href="/"><img src="/images/logo-games.jpeg" width="10%" /></a>
+</footer>
+</html>

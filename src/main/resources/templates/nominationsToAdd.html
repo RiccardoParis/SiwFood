@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Scelta candidati</title>
+	<link rel="stylesheet" href="/css/updateAward.css" />
+</head>
+
+<body>
+	<div class="main-content"><a class="ancoraLogo" href="/"><img class="logo" src="/images/logo-games.jpeg"/></a>
+		<div class="top">
+			
+			<h2 th:text="${award.type} +' ' + ${award.year}"></h2>
+			<h1 th:text="'Candidati al premio:'"></h1>
+		</div>
+	</div>
+	<div th:if="${award.nominations.isEmpty()}">Non ci sono candidati per questo premio</div>
+	<ul>
+		<li th:each="nomination: ${award.nominations}">
+			<span th:text="${nomination.title}"></span>
+			<a th:href="@{'/removeNominationFromAward/'+ ${nomination.id}+'/'+${award.id}+ '/' + ${award.type} +
+			'/' + ${award.year}}">Cancella</a>
+		</li>
+	</ul>
+	<div>
+		Videogiochi che si possono aggiungere:
+		<ul>
+			<li th:each="nomination: ${nominationsToAdd}">
+				<span th:text="${nomination.title}"></span>
+				<a th:href="@{'/addNominationToAward/'+ ${nomination.id}+'/'+${award.id}+ '/' + ${award.type} +
+				'/' + ${award.year}}">Aggiungi</a>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<a href="/manageAwards"><button type="button">Fine</button></a>
+	</div>
+</body>
+<footer>
+	<p>© 2024 CompanySiw, Inc</p>
+	<a class="logoFooter" href="/"><img src="/images/logo-games.jpeg" width="10%" /></a>
+</footer>
+</html>
